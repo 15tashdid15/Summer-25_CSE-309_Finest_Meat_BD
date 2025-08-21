@@ -101,38 +101,3 @@ You can watch the full project demo here:
 
 This project is for **educational purposes**. You may fork and customize it for personal or academic use.
 
-```mermaid
-flowchart LR
-  subgraph Client[Client (Browser)]
-    B1[Chrome / Firefox / Edge]
-  end
-
-  subgraph FE[Tier 1 · Frontend (Presentation)]
-    F1[HTML/CSS/JS Views & Forms]
-    F2[Validation & UX]
-    F3[Charts (Chart.js) & Maps/GPS]
-  end
-
-  subgraph BE[Tier 2 · Backend (Application)]
-    P1[PHP Controllers / Routes]
-    P2[Auth & RBAC (Admin/QC/Packaging/Transport)]
-    P3[REST APIs · JSON]
-    P4[Reports Export (CSV/PDF/Excel)]
-  end
-
-  subgraph DB[Tier 3 · Database (Data)]
-    D1[(MySQL 8.0)]
-    D2[Users · Batches · Grading · Packaging · Transport · Reports]
-  end
-
-  subgraph EXT[External / Integrations]
-    X1[Email/SMTP Alerts]
-    X2[GPS/Map APIs]
-    X3[Future: IoT Sensors, Barcode/QR]
-  end
-
-  Client -->|HTTPS| FE
-  FE <--> |JSON/HTTP| BE
-  BE <--> |SQL| D1
-  BE --> EXT
-```
