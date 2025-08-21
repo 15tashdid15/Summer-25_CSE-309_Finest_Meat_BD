@@ -135,3 +135,4 @@ flowchart LR
   FE <--> |JSON/HTTP| BE
   BE <--> |SQL| D1
   BE --> EXT
+```
