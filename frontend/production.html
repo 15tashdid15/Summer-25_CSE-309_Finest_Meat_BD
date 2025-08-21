@@ -1,0 +1,83 @@
+<!-- production.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Production Tracking - FinestMeatBD</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Flowbite CDN -->
+  <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+  <style>
+    body {
+      background-image: url('../assets/production.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      margin: 0;
+      transition: background-image 1s ease-in-out;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-content {
+      flex: 10;
+      padding: 300px;
+      background-color: rgba(65, 60, 60, 0.623);
+      box-shadow: 0 20px 40px rgba(177, 166, 166, 0.7);
+      border-radius: 10px;
+    }
+
+    footer {
+      background-color: #1a202c;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="flex flex-col min-h-screen">
+    <!-- Top Navbar -->
+    <header class="flex justify-between items-center bg-white bg-opacity-90 shadow p-4">
+      <a href="index.html" class="text-2xl font-bold">FinestMeatBD</a>
+      <div class="flex gap-4">
+        <a href="admindash.html" class="btn-green">Dashboard</a>
+        <a href="index.html" class="btn-green">Home</a>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <h2 class="text-2xl font-semibold text-center mb-8">Production Tracking</h2>
+
+      <!-- Production Records Table -->
+      <table class="min-w-full table-auto">
+        <thead>
+          <tr>
+            <th class="px-4 py-2 border">Batch ID</th>
+            <th class="px-4 py-2 border">Product Name</th>
+            <th class="px-4 py-2 border">Grading</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="px-4 py-2 border">Batch 101</td>
+            <td class="px-4 py-2 border">Premium Beef</td>
+            <td class="px-4 py-2 border">A+</td>
+          </tr>
+          <!-- Add other records here -->
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      &copy; 2025 FinestMeatBD. All rights reserved.
+    </footer>
+  </div>
+
+</body>
+</html>

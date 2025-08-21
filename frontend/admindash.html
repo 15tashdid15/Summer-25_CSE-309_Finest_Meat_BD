@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - FinestMeatBD</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Flowbite CDN -->
+  <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background-image: url('../assets/meat1.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      margin: 0;
+    }
+
+    .card-shadow {
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(6px);
+    }
+
+    .btn-green {
+      background-color: #32CD32;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .btn-green:hover {
+      background-color: #28a745;
+    }
+
+    .sidebar {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      height: 100vh;
+      width: 260px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      padding-top: 50px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      padding: 15px;
+      text-decoration: none;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .sidebar a:hover {
+      background-color: #444;
+    }
+
+    .content {
+      margin-left: 280px;
+      padding: 20px;
+    }
+
+    .hamburger-menu {
+      display: none;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .hamburger-menu:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 50%;
+    }
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sidebar">
+    <div class="hamburger-menu" onclick="toggleSidebar()">&#9776;</div>
+    <a href="admindash.html">Dashboard Overview</a>
+    <a href="production.html">Production</a>
+    <a href="packaging.php">Packaging</a>
+    <a href="health.html">Check Product Health</a>
+    <a href="quality.php">Product Quality Trends</a>
+    <a href="delivery.php">Deliveries</a>
+    <a href="people.html">Users</a>
+    <a href="../index.php">Retailer Informations</a>
+    <a href="../adduser.php">Retailer Form</a>
+
+  </div>
+
+  <div class="content">
+    <header class="flex justify-between items-center bg-white p-4">
+      <h1 class="text-2xl font-bold">Admin Dashboard - FinestMeatBD</h1>
+      <div class="flex gap-4">
+        <button class="btn-green" onclick="logout()">Logout</button>
+        <button class="btn-green" onclick="window.location.href = 'index.html';">Inspect Homepage</button>
+      </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+      <div class="card card-shadow">
+        <h3 class="font-semibold text-lg">Total Production Batches</h3>
+        <p class="text-2xl">30</p>
+      </div>
+      <div class="card card-shadow">
+        <h3 class="font-semibold text-lg">Total Deliveries</h3>
+        <p class="text-2xl">25</p>
+      </div>
+      <div class="card card-shadow">
+        <h3 class="font-semibold text-lg">Avg Product Quality</h3>
+        <p class="text-2xl">90%</p>
+      </div>
+    </section>
+
+    <!-- Graph Section -->
+    <section class="mt-6">
+      <h2 class="text-xl font-semibold mb-4">Production Quality Trends</h2>
+      <canvas id="qualityChart"></canvas>
+    </section>
+
+    <!-- Summary Table Section -->
+    <section class="mt-6 card card-shadow">
+      <h2 class="text-xl font-semibold mb-4">Production Overview</h2>
+      <table class="w-full table-auto">
+        <thead class="text-gray-700">
+          <tr>
+            <th class="px-4 py-2">Batch ID</th>
+            <th class="px-4 py-2">Production Date</th>
+            <th class="px-4 py-2">Product</th>
+            <th class="px-4 py-2">Status</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-600">
+          <tr>
+            <td class="px-4 py-2">B001</td>
+            <td class="px-4 py-2">2025-04-15</td>
+            <td class="px-4 py-2">Beef Cuts</td>
+            <td class="px-4 py-2">Completed</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2">B002</td>
+            <td class="px-4 py-2">2025-04-16</td>
+            <td class="px-4 py-2">Mutton</td>
+            <td class="px-4 py-2">In Progress</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('qualityChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['January', 'February', 'March', 'April', 'May'],
+        datasets: [{
+          label: 'Quality Score',
+          data: [88, 92, 90, 91, 93],
+          fill: true,
+          borderColor: 'rgb(59, 130, 246)',
+          backgroundColor: 'rgba(59, 130, 246, 0.2)',
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom'
+          }
+        }
+      }
+    });
+
+    function toggleSidebar() {
+      document.querySelector('.sidebar').classList.toggle('hidden');
+    }
+
+    function logout() {
+      localStorage.removeItem('role');  // Clear role from localStorage
+      window.location.href = '/Spring-25_CSE-303_Grading-Packaging-and-Transport-Management-System-for-Meat-Based-Products/login.php';  // Redirect to homepage where login modal will appear
+    }
+  </script>
+</body>
+
+</html>
