@@ -101,6 +101,7 @@ You can watch the full project demo here:
 
 This project is for **educational purposes**. You may fork and customize it for personal or academic use.
 
+```mermaid
 flowchart LR
   subgraph Client[Client (Browser)]
     B1[Chrome / Firefox / Edge]
@@ -113,7 +114,7 @@ flowchart LR
   end
 
   subgraph BE[Tier 2 · Backend (Application)]
-    P1[PHP 8+ Controllers / Routes]
+    P1[PHP Controllers / Routes]
     P2[Auth & RBAC (Admin/QC/Packaging/Transport)]
     P3[REST APIs · JSON]
     P4[Reports Export (CSV/PDF/Excel)]
